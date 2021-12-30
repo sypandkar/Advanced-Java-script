@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch() , Insert , Update , Delete</title>
+</head>
+<body>
+    <h1>fetch() , Insert , Update , Delete</h1>
+
+    <script>
+        // =============== INSERTING DATA ON SERVER ================= //
+        //use jsonplaceholder website for fetching fake json data
+        //I can also give backend language path here like php .net
+        /*
+        fetch('https://jsonplaceholder.typicode.com/posts', {    
+          method: 'POST',
+          body: JSON.stringify({
+           title: 'foo',
+           body: 'bar',
+           userId: 1,
+        }),
+        headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+        */
+
+        //we can also write like this
+        var obj = {
+           title: 'foo',
+           body: 'bar',
+           userId: 1,
+        }
+
+        fetch('https://jsonplaceholder.typicode.com/posts', {    
+          method: 'POST',
+          body: JSON.stringify(obj),               // obj is variable in which object data is stored.                     
+          //we send data on server in JSON format. because JSON is universal format any language can read it.
+        headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise-all</title>
+</head>
+<body>
+    <h1>Promise-all</h1>
+
+    <script>
+/*
+// ==================== 1. promise.all ======================= //       
+        let p1 = new Promise((resolve , reject) => {
+            setTimeout(() =>{
+                console.log("first promise has resolved");
+                resolve(10)
+            }, 1 * 1000)
+        })
+
+        let p2 = new Promise((resolve , reject) => {
+            setTimeout(() =>{
+                console.log("second promise has resolved");
+                resolve(20)
+            }, 2 * 1000)
+        })
+
+        let p3 = new Promise((resolve , reject) => {
+            setTimeout(() =>{
+                console.log("third promise has resolved");
+                resolve(30)
+            }, 3 * 1000)
+        });
+
+        
+        // //calling promise function 
+        // Promise.all([p1 , p2 , p3]).then((result) => {
+        //     console.log(`results ${result}`);
+        // }).catch((error) => {
+        //     console.log(`Error : ${result}`);
+        // });
+        
+
+        //NOw using for in loop for printing array 
+
+        var total = 0;
+        Promise.all([p1 , p2 , p3]).then((result) => {
+            //for in loop
+            for (var i in result ) {total += result[i];}            
+
+            console.log(`results ${result}`);
+            console.log(`Total ${total}`);
+        }).catch((error) => {
+            console.log(`Error : ${error}`);
+        });
+
+//NOte : agar sare promises resolve ho gaye to hi .then() kam karega. 
+//Agar is main se ak bhi promise reject ho jata hain tab hamar .catch() function chala jayega.
+*/
+
+/*
+// =============== 2. NOW I WILL REJECT 2ND PROMISE =======================// 
+let p1 = new Promise((resolve , reject) => {
+            setTimeout(() =>{
+                console.log("first promise has resolved");
+                resolve(10)
+            }, 1 * 1000)
+        })
+
+        let p2 = new Promise((resolve , reject) => {
+            setTimeout(() =>{
+                console.log("second promise has Failed");
+                reject("failed")
+            }, 2 * 1000)
+        })
+
+        let p3 = new Promise((resolve , reject) => {
+            setTimeout(() =>{
+                console.log("third promise has resolved");
+                resolve(30)
+            }, 3 * 1000)
+        });
+var total = 0;
+        Promise.all([p1 , p2 , p3]).then((result) => {
+            //for in loop
+            for (var i in result ) {total += result[i];}            
+
+            console.log(`results ${result}`);
+            console.log(`Total ${total}`);
+        }).catch((error) => {
+            console.log(`Error : ${error}`);
+        });
+*/
+
+/*
+// =================== 3. Making promise a normal function (resolve case)======================== //
+//instead of writing p1 p2 p3 seperate function we can write a normal function like this
+let promiseCall = function(returnData , message) {
+    return function(resolve , reject){
+        setTimeout(() =>{
+        console.log(`The ${message} promise has resolved`);
+        resolve(returnData)
+    }, returnData * 100)
+    }
+};
+
+        let p1 = new Promise(promiseCall(10,"first"));
+        let p2 = new Promise(promiseCall(20,"second"));
+        let p3 = new Promise(promiseCall(30,"third"));
+        var total = 0;
+        Promise.all([p1 , p2 , p3]).then((result) => {
+            //for in loop
+            for (var i in result ) {total += result[i];}            
+
+            console.log(`results ${result}`);
+            console.log(`Total ${total}`);
+        }).catch((error) => {
+            console.log(`Error : ${error}`);
+        });
+*/
+
+
+// =================== 4.  Making promise a normal function (reject case) ======================== //
+//instead of writing p1 p2 p3 seperate function we can write a normal function like this
+let promiseCall = function(returnData , message) {
+    return function(resolve , reject){
+        setTimeout(() =>{
+        console.log(`The ${message} promise has resolved`);
+        resolve(returnData)
+    }, returnData * 100)
+    }
+};
+
+//added one more promise with rejection 
+        let p1 = new Promise(promiseCall(10,"first"));
+        let p2 = new Promise(promiseCall(20,"second"));
+        let p3 = new Promise(promiseCall(30,"third"));
+        let p4 = new Promise(function (resolve , reject){
+            reject("the 4rth promise has rejected.")
+        });
+        var total = 0;
+        Promise.all([p1 , p2 , p3 , p4]).then((result) => {
+            //for in loop
+            for (var i in result ) {total += result[i];}            
+
+            console.log(`results ${result}`);
+            console.log(`Total ${total}`);
+        }).catch((error) => {
+            console.log(`Error : ${error}`);
+        });
+
+// NOTE: ak bhi promise reject ho gaya to error function call ho jayega i.e. catch function.
+
+    </script>
+</body>
+</html>

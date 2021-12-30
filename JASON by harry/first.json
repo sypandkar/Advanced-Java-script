@@ -1,0 +1,14 @@
+{
+    "name" : "shubham",
+    "score" : 11.71,
+    "IsAdmin": false,
+    "Liscense" : null,
+    "shopItem": ["food","clothes","oil"],
+    "myObj":{
+        "name": "nested",
+        "marks": 45,
+        "shopItem2": ["food","clothes",{"a": true}]
+    }
+}
+
+

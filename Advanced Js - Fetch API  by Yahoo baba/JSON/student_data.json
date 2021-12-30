@@ -1,0 +1,12 @@
+[
+    {
+        "name" : "kumar Sanu",
+        "age" : "25",
+        "city" : "Goa"   
+    },
+    {
+        "name" : "Soham Sanu",
+        "age" : "24",
+        "city" : "Maharashtra"    
+    }
+]
